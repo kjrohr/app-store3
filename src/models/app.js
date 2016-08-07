@@ -33,6 +33,7 @@ exports.remove = (payload, err, success) => {
     }
   }).then(success).catch(err);
 }
+
 // Exports updates which references the sequelize find method
 // then takes the existing Data and updates the attributes
 exports.update = (payload, err, success) => {

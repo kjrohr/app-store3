@@ -24,70 +24,165 @@ mocha
 ```
 
 ## End Points
+
+### POST /api/v1/users
+Create a user
+
+``` javascript
+{
+  "name": "Test User"
+}
+
+```
+
 ### GET /api/v1/users
+Read all users
+
 ``` javascript
 
 [
   {
-    id: 1,
-    name: 'Karl Rohr',
-  },
-  {
-    id: 2,
-    name: 'Lindsay Hampton',
-  },
-  {
-    id: 3,
-    name: 'Candy Johnson',
+    id: 5,
+    name: "Karl Rohr",
+    createdAt: "2016-08-07T01:04:27.000Z",
+    updatedAt: "2016-08-07T01:04:27.000Z"
   }
 ]
 
 ```
 
 ### GET /api/v1/users/:id
+Read one user by id
+
 ``` javascript
 
 {
-  id: 1,
-  name: 'Karl Rohr',
-};
+  id: 5,
+  name: "Karl Rohr",
+  createdAt: "2016-08-07T01:04:27.000Z",
+  updatedAt: "2016-08-07T01:04:27.000Z",
+  apps: [
+    {
+      id: 2,
+      name: "Skyrim",
+      description: "RPG",
+      releaseDate: "11/11/2011",
+      createdAt: "2016-08-07T01:05:36.000Z",
+      updatedAt: "2016-08-07T01:05:36.000Z",
+      userID: 5
+    }
+  ]
+}
+
+```
+
+### POST /api/v1/users/:id
+Update a user
+
+``` javascript
+
+{
+  "name": "Still A Test User"
+}
+
+```
+
+### DELETE /api/v1/users/:id
+Delete a user
+
+``` javascript
+1
+
+```
+
+### POST /api/v1/apps/
+Create an app
+
+``` javascript
+
+  {
+    "name": "Test App",
+    "description": "Something witty",
+    "releaseDate": "11/11/2011",
+    "userID": 5
+  }
 
 ```
 
 ### GET /api/v1/apps
+Read all apps
+
 ``` javascript
 
 [
   {
-    id: 1,
-    name: 'Doom',
-    description: 'FPS',
-    releaseDate: '5/13/16'
-  },
-  {
     id: 2,
-    name: 'Starcraft 2',
-    description: 'RTS',
-    releaseDate: '7/27/2010'
-  },
-  {
-    id: 3,
-    name: 'Skyrim',
-    description: 'RPG',
-    releaseDate: '11/11/11'
-  },
+    name: "Skyrim",
+    description: "RPG",
+    releaseDate: "11/11/2011",
+    createdAt: "2016-08-07T01:05:36.000Z",
+    updatedAt: "2016-08-07T01:05:36.000Z",
+    userID: 5
+  }
 ]
 
 ```
 
 ### GET /api/v1/apps/:id
+Read on app by id
+
 ``` javascript
 
 {
-  id: 1,
-  title: 'Doom',
-  description: 'FPS',
-  releaseDate: '5/13/16'
+  id: 2,
+  name: "Skyrim",
+  description: "RPG",
+  releaseDate: "11/11/2011",
+  createdAt: "2016-08-07T01:05:36.000Z",
+  updatedAt: "2016-08-07T01:05:36.000Z",
+  userID: 5
 }
+
+```
+
+### GET /api/v1/users/:id/apps
+Show all the apps for a specific user
+
+``` javascript
+
+[
+  {
+    id: 2,
+    name: "Skyrim",
+    description: "RPG",
+    releaseDate: "11/11/2011",
+    createdAt: "2016-08-07T01:05:36.000Z",
+    updatedAt: "2016-08-07T01:05:36.000Z",
+    userID: 5
+  }
+]
+
+```
+
+### POST /api/v1/apps/:id
+Update an app
+
+``` javascript
+
+{
+  "name": "This is still a test App",
+  "description": "Something witty",
+  "releaseDate": "11/11/2011",
+  "userID": 5
+}
+
+```
+
+### DELETE /api/v1/apps/:id
+Delete an app
+
+``` javascript
+
+  1
 
 ```
