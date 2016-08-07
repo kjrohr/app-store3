@@ -1,13 +1,17 @@
+// Makes an instance of db.js and sets it to variable db
 const db = require('./db.js');
 
+// Exports the add function which references the sequelize create method.
 exports.add = (payload, err, success) => {
   db.app.create(payload).then(success).catch(err);
 }
 
+// Exports the all function which references the sequelize findAll method
 exports.all = (err, success) => {
   db.app.findAll().then(success).catch(err);
 }
 
+// Exports the one funciton which references the sequelize find method
 exports.one = (payload, err, success) => {
   db.app.find({
     where: {
@@ -21,6 +25,7 @@ exports.one = (payload, err, success) => {
   }).then(success).catch(err);
 }
 
+// Exports remove which references the sequelize destroy method
 exports.remove = (payload, err, success) => {
   db.app.destroy({
     where: {
@@ -28,7 +33,8 @@ exports.remove = (payload, err, success) => {
     }
   }).then(success).catch(err);
 }
-
+// Exports updates which references the sequelize find method
+// then takes the existing Data and updates the attributes
 exports.update = (payload, err, success) => {
     db.app.find({
       where: {
