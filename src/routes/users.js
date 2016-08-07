@@ -1,35 +1,58 @@
+const user = require('../models/user.js');
+
 // Starts the export for this file
 module.exports = (express) => {
   // Makes a new instance of express.Router() and assigns it to router.
   let router = express.Router();
 
-  // Basic route set up to return dummy data
-  // /api/v1/users would return the json from line 9 to 22
+  // Read All
   router.get('/users', (req,res) => {
-    res.json([
-      {
-        id: 1,
-        name: 'Karl Rohr',
-      },
-      {
-        id: 2,
-        name: 'Lindsay Hampton',
-      },
-      {
-        id: 3,
-        name: 'Candy Johnson',
-      }
-    ]);
+    console.log('finding all');
+    user.all((err) => {
+      res.status(500).json(err);
+    }, (data) => {
+      res.status(200).json(data);
+    });
   });
 
-// Basic route set up to return dummy data
-// /api/v1/users/:id would return the json from line 29 to 32
+  // Read All
   router.get('/users/:id', (req,res) => {
-    res.json(
-      {
-        id: 1,
-        name: 'Karl Rohr',
-      });
+    req.body.id = req.params.id;
+    user.one(req.body, (err) => {
+      res.status(500).json(err);
+    }, (data) => {
+      res.status(200).json(data);
+    })
+  });
+
+  // Delete
+  router.delete('/users/:id', (req,res) => {
+    req.body.id = req.params.id;
+    user.remove(req.body, (err) => {
+      res.status(500).json(err);
+    }, (data) => {
+      res.status(200).json(data);
+    })
+  });
+
+  // Create
+  router.post('/users', (req,res) => {
+    console.log('create user hit');
+    user.add(req.body, (err) => {
+      res.status(500).json(err);
+    }, (data) => {
+      res.status(200).json(data);
+    })
+  });
+
+  // Update
+  router.post('/users/:id', (req,res) => {
+    req.body.id = req.params.id;
+    user.update(req.body, (err) => {
+      res.status(500).json(err);
+    }, (data) => {
+      res.status(200).json(data);
+    })
   });
 
 // Returns router to the file that would call it
