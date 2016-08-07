@@ -31,9 +31,10 @@ const app = sequelize.define('app', {
   }
 });
 
-// course.hasMany(user, {
-//   foreignKey: 'courseID',
-// })
+user.hasMany(app, {
+  foreignKey: 'userID',
+})
+
 console.log('database about to be syncd');
 sequelize.sync();
 console.log('database syncd');

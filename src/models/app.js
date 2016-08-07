@@ -1,12 +1,10 @@
 const db = require('./db.js');
 
 exports.add = (payload, err, success) => {
-  console.log('app about to be created');
   db.app.create(payload).then(success).catch(err);
 }
 
 exports.all = (err, success) => {
-  console.log('all apps about to found');
   db.app.findAll().then(success).catch(err);
 }
 

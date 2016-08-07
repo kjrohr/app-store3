@@ -26,8 +26,8 @@ describe('App Model', () => {
   // Add a App
   it('Adds a new App', (done) => {
 
-    // Generate a fake App with a random title
-    const fakeApp = { title: faker.name.firstName() };
+    // Generate a fake App with a random name
+    const fakeApp = { name: faker.name.firstName() };
 
     // Call app model for adding
     App.add(fakeApp,
@@ -39,8 +39,8 @@ describe('App Model', () => {
         // Save the returned data for later use in tests
         this.tempApp = app.dataValues;
 
-        // App.title returned from model should match app.title supplied
-        expect(app.title).to.be.equal(fakeApp.title);
+        // App.name returned from model should match app.name supplied
+        expect(app.name).to.be.equal(fakeApp.name);
         done();
       }
     );
@@ -49,7 +49,7 @@ describe('App Model', () => {
   // Find a App
   it('Find a App', (done) => {
 
-    // Generate a fake App with a random title
+    // Generate a fake App with a random name
     const targetApp = this.testApps[0];
 
     // Call app model for finding
@@ -59,8 +59,8 @@ describe('App Model', () => {
       },
       (app) => {
 
-        // App.title returned from model should match app.title supplied
-        expect(app.title).to.be.equal(targetApp.title);
+        // App.name returned from model should match app.name supplied
+        expect(app.name).to.be.equal(targetApp.name);
         done();
       }
     );
@@ -72,8 +72,8 @@ describe('App Model', () => {
     // Load in the info for an existing app
     var updateApp = this.tempApp;
 
-    // Generate a new title for hte app
-    updateApp.title = 'Not A Real Name';
+    // Generate a new name for hte app
+    updateApp.name = 'Not A Real Name';
 
     // Call app model for updating
     App.update(updateApp,
@@ -83,8 +83,8 @@ describe('App Model', () => {
       (app) => {
         // Save the returned data for later use in tests
         this.tempApp = app;
-        // App.title returned from model should match app.title supplied
-        expect(app.title).to.be.equal(updateApp.title);
+        // App.name returned from model should match app.name supplied
+        expect(app.name).to.be.equal(updateApp.name);
         done();
       }
     );

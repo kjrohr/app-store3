@@ -1,12 +1,10 @@
 const db = require('./db.js');
 
 exports.add = (payload, err, success) => {
-  console.log('user about to be created');
   db.user.create(payload).then(success).catch(err);
 }
 
 exports.all = (err, success) => {
-  console.log('all users about to found');
   db.user.findAll().then(success).catch(err);
 }
 

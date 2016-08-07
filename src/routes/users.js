@@ -55,6 +55,20 @@ module.exports = (express) => {
     })
   });
 
+  // Read One
+  // got to the route of a specificed user app
+  router.get('/users/:id/apps', (req, res) => {
+    const userData = { id: req.params.id };
+    user.one(userData, (err) => {
+      res.status(500).json(err);
+    }, (data) => {
+      // By putting .apps when you go to the specific route it will only show the apps.
+      res.status(200).json(data.apps);
+    });
+  });
+
+
+
 // Returns router to the file that would call it
   return router;
 };
